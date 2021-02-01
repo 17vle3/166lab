@@ -1,6 +1,6 @@
 CREATE TABLE Professor ( pSSN  CHAR(11) NOT NULL,  name CHAR(30), age INTEGER, rank text, specialty text,  PRIMARY KEY (pSSN) ); 
 CREATE TABLE Project( pno INTEGER NOT NULL, pSSN CHAR(11),  budget  float,  sponsor  CHAR(30), start_date DATE, end_date DATE,  PRIMARY KEY (pno), FOREIGN KEY (pSSN) REFERENCES Professor); --manage included
-CREATE TABLE Dept( dno  INTEGER NOT NULL,  pSSN CHAR(11) , dname CHAR(30), office CHAR(30),  PRIMARY KEY (dno) FOREIGN KEY (pSSN) REFERENCES Professor);
+CREATE TABLE Dept( dno  INTEGER NOT NULL,  pSSN CHAR(11) , dname CHAR(30), office CHAR(30),  PRIMARY KEY (dno), FOREIGN KEY (pSSN) REFERENCES Professor);
 CREATE TABLE Graduate(  gSSN  CHAR(11) NOT NULL, dno INTEGER,  name  CHAR(30), age INTEGER, deg_pg  CHAR(30), PRIMARY KEY (gSSN)  ,  FOREIGN KEY (dno) REFERENCES Dept); --includes major
 
 CREATE TABLE work_dept ( dno INTEGER,  pSSN CHAR(11), time_pc INTEGER, PRIMARY KEY (dno, pSSN), FOREIGN KEY (pSSN ) REFERENCES Professor, FOREIGN KEY (dno) REFERENCES Dept );
@@ -13,7 +13,7 @@ CREATE TABLE supervise ( pSSN CHAR(11), gSSN CHAR(11), pno INTEGER, PRIMARY KEY 
 
 CREATE TABLE Musicians( SSN  CHAR(11) NOT NULL,  name text, PRIMARY KEY (SSN) ); 
 CREATE TABLE Album( albumidentifier INTEGER NOT NULL, SSN  CHAR(11), title text, copyrightDate DATE, speed float, PRIMARY KEY (albumidentifier  ) ,FOREIGN KEY (SSN) REFERENCES Musicians);
-CREATE TABLE Instrument( instrID INTEGER NOT NULL,  key text,  dname text PRIMARY KEY (instrID ) );
+CREATE TABLE Instrument( instrID INTEGER NOT NULL,  key text,  dname text, PRIMARY KEY (instrID ) );
 CREATE TABLE Songs( songID INTEGER NOT NULL,albumidentifier INTEGER, title text, author CHAR(30),  PRIMARY KEY (songID),  FOREIGN KEY (albumidentifier) REFERENCES Album);
 
 CREATE TABLE Plays( SSN  CHAR(11), instrID INTEGER , PRIMARY KEY (SSN, instrID), FOREIGN KEY (SSN) REFERENCES Musicians, FOREIGN KEY (instrID ) REFERENCES Instrument);
@@ -21,5 +21,5 @@ CREATE TABLE Perform (SSN  CHAR(11), songID INTEGER , PRIMARY KEY (SSN, songID )
 
 CREATE TABLE Place(  address text NOT NULL,  PRIMARY KEY (address )  );
 CREATE TABLE Telephone(phone_no CHAR(11), address text, FOREIGN KEY (address ) REFERENCES Place);
-CREATE TABLE Lives ( SSN CHAR(11), phone_no CHAR(11), address text, PRIMARY KEY (SSN, address), FOREIGN KEY (phone_no , address) References Telephone Home, FOREIGN KEY (SSN ) REFERENCES Musicians );
+CREATE TABLE Lives ( SSN CHAR(11), phone_no CHAR(11), address text, PRIMARY KEY (SSN, address), FOREIGN KEY (phone_no , address) REFERENCES Telephone Home, FOREIGN KEY (SSN ) REFERENCES Musicians );
 
