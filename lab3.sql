@@ -25,6 +25,6 @@ CREATE TABLE Plays( SSN  CHAR(11), instrID INTEGER , PRIMARY KEY (SSN, instrID),
 CREATE TABLE Perform (SSN  CHAR(11), songID INTEGER , PRIMARY KEY (SSN, songID ), FOREIGN KEY (SSN) REFERENCES Musicians, FOREIGN KEY (songID) REFERENCES Songs);
 
 CREATE TABLE Place(  address text NOT NULL,  PRIMARY KEY (address )  );
-CREATE TABLE Telephone(phone_no CHAR(11), address text, FOREIGN KEY (address ) REFERENCES Place);
+CREATE TABLE Telephone(phone_no CHAR(11), PRIMARY KEY (phone_no), address text, FOREIGN KEY (address ) REFERENCES Place);
 CREATE TABLE Lives ( SSN CHAR(11), phone_no CHAR(11), address text, PRIMARY KEY (SSN, address), FOREIGN KEY (phone_no,address) REFERENCES Telephone, FOREIGN KEY (SSN ) REFERENCES Musicians );
 
