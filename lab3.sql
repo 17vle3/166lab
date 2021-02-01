@@ -9,7 +9,7 @@ CREATE TABLE Dept( dno  INTEGER NOT NULL,  pSSN CHAR(11) , dname CHAR(30), offic
 CREATE TABLE Graduate(  gSSN  CHAR(11) NOT NULL, dno INTEGER,  name  CHAR(30), age INTEGER, deg_pg  CHAR(30), PRIMARY KEY (gSSN)  ,  FOREIGN KEY (dno) REFERENCES Dept); --includes major
 
 CREATE TABLE work_dept ( dno INTEGER,  pSSN CHAR(11), time_pc INTEGER, PRIMARY KEY (dno, pSSN), FOREIGN KEY (pSSN ) REFERENCES Professor, FOREIGN KEY (dno) REFERENCES Dept );
-CREATE TABLE advise ( seniorSSN CHAR(11), gradSSN CHAR(11), PRIMARY KEY (seniorSSN, gradSSN), FOREIGN KEY (seniorSSN) REFERENCES Graduate, FOREIGN KEY (gSSN) REFERENCES Graduate );
+CREATE TABLE advise ( seniorSSN CHAR(11), gradSSN CHAR(11), PRIMARY KEY (seniorSSN, gradSSN), FOREIGN KEY (seniorSSN) REFERENCES Graduate, FOREIGN KEY (gradSSN) REFERENCES Graduate );
 CREATE TABLE work_in ( pno INTEGER, pSSN CHAR(11), PRIMARY KEY (pno, pSSN), FOREIGN KEY (pSSN) REFERENCES Professor, FOREIGN KEY (pno) REFERENCES Project );
 CREATE TABLE supervise ( pSSN CHAR(11), gSSN CHAR(11), pno INTEGER, PRIMARY KEY (pSSN, gSSN, pno), FOREIGN KEY (pSSN) REFERENCES Professor, FOREIGN KEY (gSSN) REFERENCES Graduate, FOREIGN KEY (pno) REFERENCES Project );
 
@@ -26,5 +26,5 @@ CREATE TABLE Perform (SSN  CHAR(11), songID INTEGER , PRIMARY KEY (SSN, songID )
 
 CREATE TABLE Place(  address text NOT NULL,  PRIMARY KEY (address )  );
 CREATE TABLE Telephone(phone_no CHAR(11), PRIMARY KEY (phone_no), address text, FOREIGN KEY (address ) REFERENCES Place);
-CREATE TABLE Lives ( SSN CHAR(11), phone_no CHAR(11), address text, PRIMARY KEY (SSN, address), FOREIGN KEY (phone_no,address) REFERENCES Telephone, FOREIGN KEY (SSN ) REFERENCES Musicians );
+CREATE TABLE Lives ( SSN CHAR(11), phone_no CHAR(11), address text, PRIMARY KEY (SSN, address), FOREIGN KEY (phone_no) REFERENCES Telephone,FOREIGN KEY (address) REFERENCES Place, FOREIGN KEY (SSN ) REFERENCES Musicians );
 
