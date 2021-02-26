@@ -1,25 +1,24 @@
 SELECT S.sname,COUNT(*) as PartCount
 FROM Suppliers S, Catalog C, Parts P
 WHERE C.sid = S.sid and P.pid = C.pid
-GROUP BY  S.sname, S.id;
+GROUP BY  S.sname, S.sid;
 
 SELECT S.sname,COUNT(*) as PartCount
 FROM Suppliers S, Catalog C, Parts P
 WHERE C.sid = S.sid and P.pid = C.pid
-GROUP BY  S.sname, S.id
-HAVING COUNT(pid) <=3;
+GROUP BY  S.sname, S.sid
+HAVING COUNT(P.pid) <=3;
 
 SELECT S.sname, COUNT(*) as PartCount
 FROM Suppliers S, Catalog C, Parts P
-WHERE C.sid = S.id and P.id = C.pid and P.color like 'Green%'
-GROUP BY S.sname, S.id;
+WHERE C.sid = S.sid and P.sid = C.pid and P.color like 'Green%'
+GROUP BY S.sname, S.sid;
 
 create view temp
 as
-
 SELECT DISTINCT C.sid
 FROM Catalog C, Parts P
-WHERE P.id = C.pid and P.color like 'Red%'
+WHERE P.pid = C.pid and P.color like 'Red%'
 INTERSECT
 SELECT DISTINCT C1.sid 
 FROM Suppliers S1, Catalog C1, Parts P1
