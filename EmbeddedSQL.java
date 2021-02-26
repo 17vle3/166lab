@@ -296,7 +296,7 @@ public class EmbeddedSQL {
 
    public static void Query5(EmbeddedSQL esql){
       try{
-         String query = "SELECT * FROM Catalog WHERE cost < ";
+         String query = "SELECT pname FROM catalog C,parts P WHERE P.pid = C.pid and C.cost < ";
          System.out.print("\tEnter cost: $");
          String input = in.readLine();
          query += input;
@@ -310,7 +310,7 @@ public class EmbeddedSQL {
 
    public static void Query6(EmbeddedSQL esql){
       try{
-         String query = "SELECT * FROM Catalog WHERE cost < ";
+         String query = "SELECT address FROM catalog C,parts P,suppliers S WHERE S.sid = C.sid AND P.pid = C.pid AND pname = ";
          System.out.print("\tEnter cost: $");
          String input = in.readLine();
          query += input;
