@@ -9,4 +9,4 @@ INTERSECT SELECT DISTINCT S1.sname, Max(C1.cost) FROM Suppliers S1, Catalog C1, 
 
 SELECT pname FROM catalog C,parts P WHERE P.pid = C.pid and C.cost < 3;
 
-SELECT address FROM catalog C,parts P,suppliers S WHERE S.sid = C.sid AND P.pid = C.pid AND pname = "Smoke Shifter End";
+SELECT address FROM catalog C,parts P,suppliers S WHERE S.sid = C.sid AND P.pid = C.pid AND pname = 'Smoke Shifter End';
