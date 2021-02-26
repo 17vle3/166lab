@@ -250,7 +250,7 @@ public class EmbeddedSQL {
    
    public static void Query1(EmbeddedSQL esql){
       try{
-         String query = "SELECT S.sname,COUNT(*) as PartCount FROM Suppliers S, Catalog C, Parts P WHERE C.sid = S.sid and P.pid = C.pid GROUP BY  S.sname, S.id";
+         String query = "SELECT S.sname,COUNT(*) as PartCount FROM Suppliers S, Catalog C, Parts P WHERE C.sid = S.sid and P.pid = C.pid GROUP BY  S.sname, S.sid;";
 
          int rowCount = esql.executeQuery(query);
          System.out.println ("total row(s): " + rowCount);
@@ -261,7 +261,7 @@ public class EmbeddedSQL {
 
    public static void Query2(EmbeddedSQL esql){
       try{
-         String query = "SELECT S.sname,COUNT(*) as PartCount FROM Suppliers S, Catalog C, Parts P WHERE C.sid = S.sid and P.pid = C.pid GROUP BY  S.sname, S.id HAVING COUNT(pid) <=3";
+         String query = "SELECT S.sname,COUNT(*) as PartCount FROM Suppliers S, Catalog C, Parts P WHERE C.sid = S.sid and P.pid = C.pid GROUP BY  S.sname, S.sid HAVING COUNT(P.pid) <=3;";
 
          int rowCount = esql.executeQuery(query);
          System.out.println ("total row(s): " + rowCount);
@@ -272,7 +272,7 @@ public class EmbeddedSQL {
 
    public static void Query3(EmbeddedSQL esql){
       try{
-         String query = "SELECT S.sname, COUNT(*) as PartCount FROM Suppliers S, Catalog C, Parts P WHERE C.sid = S.id and P.id = C.pid and P.color like 'Green%' GROUP BY S.sname, S.id;";
+         String query = "SELECT S.sname, COUNT(*) as PartCount FROM Suppliers S, Catalog C, Parts P WHERE C.sid = S.sid and P.pid = C.pid and P.color like 'Green%' GROUP BY S.sname, S.sid;";
 
          int rowCount = esql.executeQuery(query);
          System.out.println ("total row(s): " + rowCount);
@@ -283,9 +283,8 @@ public class EmbeddedSQL {
 
    public static void Query4(EmbeddedSQL esql){
       try{
-         String query = "create view temp as SELECT DISTINCT C.sid FROM Catalog C, Parts P WHERE P.id = C.pid and P.color like 'Red%' INTERSECT";
-	      query+= " SELECT DISTINCT C1.sid FROM Suppliers S1, Catalog C1, Parts P1 WHERE P1.id = C1.pid and P.color like 'Green%';" ;
-	      query+= "SELECT S.sname,Max(C.cost) from temp,Catalog C,suppliers S where temp.sid=C.sid and C.sid=S.id GROUP BY S.sname, S.id;";
+         String query = "SELECT DISTINCT S.sname, Max(C.cost) FROM Suppliers S, Catalog C, Parts P WHERE C.sid=S.sid and P.pid = C.pid and P.color like 'Red%' GROUP BY S.sname, S.sid";
+	      query+= " INTERSECT SELECT DISTINCT S1.sname, Max(C1.cost) FROM Suppliers S1, Catalog C1, Parts P1 WHERE C1.sid=S1.sid and P1.pid = C1.pid and P1.color like 'Green%' GROUP BY S1.sname, S1.sid;" ;
 
          int rowCount = esql.executeQuery(query);
          System.out.println ("total row(s): " + rowCount);
