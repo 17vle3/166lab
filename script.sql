@@ -22,6 +22,6 @@ INTERSECT
 SELECT DISTINCT S1.sname, Max(C1.cost)
 FROM Suppliers S1, Catalog C1, Parts P1
 WHERE C1.sid=S1.sid and P1.pid = C1.pid and P1.color like 'Green%'
-GROUP BY S.sname, S.sid;
+GROUP BY S1.sname, S1.sid;
 
 
