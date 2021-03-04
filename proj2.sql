@@ -104,15 +104,15 @@ CREATE TABLE RESERVATION(
 	type ENUM("Waitlist", "Reserved", "Confirmed") NOT NULL,
 );
 CREATE TABLE Waitlist(
-	R_num INTEGER not null REFERENCES Employee(R_num),
+	R_num INTEGER not null REFERENCES RESERVATION(R_num),
 	PRIMARY KEY(R_num)
 );
 CREATE TABLE Reserved(
-	R_num INTEGER not null REFERENCES Employee(R_num),
+	R_num INTEGER not null REFERENCES RESERVATION(R_num),
 	PRIMARY KEY(R_num)
 );
 CREATE TABLE Confirmed(
-	R_num INTEGER not null REFERENCES Employee(R_num),
+	R_num INTEGER not null REFERENCES RESERVATION(R_num),
 	PRIMARY KEY(R_num)
 );
 /* Connects CRUISE, CUSTOMER, and RESERVATION*/
