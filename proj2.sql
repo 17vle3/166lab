@@ -100,8 +100,8 @@ CREATE TABLE REQUEST(
 CREATE TABLE RESERVATION(
 	R_num INTEGER, 
 	type CHAR(9),
-	PRIMARY KEY(R_num)
-	type ENUM("Waitlist", "Reserved", "Confirmed") NOT NULL,
+	PRIMARY KEY(R_num),
+	type ENUM("Waitlist", "Reserved", "Confirmed") NOT NULL
 );
 CREATE TABLE Waitlist(
 	R_num INTEGER not null REFERENCES RESERVATION(R_num),
