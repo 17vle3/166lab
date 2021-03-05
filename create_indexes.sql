@@ -1,4 +1,4 @@
 CREATE INDEX numOne
-ON table part_nyc
-[ USING BTREE]
-( i n d e x col nam e )
+ON part_nyc(on_hand)
+WHERE on_hand>70;
+
