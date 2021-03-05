@@ -12,18 +12,15 @@ WHERE  n.color = 0  and s.color= 0;
 =======*/
 
 select (select count(*) from part_nyc where color .= 'Red') + (select count(*) from part_nyc where color .= 'Red') from dual;
-/*>>>>>>> ec45bd1c631acb2c93fd06b4fc7756325d05d020
+
 
 /*3. List all the suppliers that have more total on hand parts in NYC than
 they do in SFO.*/
 
 SELECT  n.supplier 
 FROM part_nyc n , part_sfo s
-<<<<<<< HEAD
-WHERE  n.on_hand>s.on_hand and n.part_number = s.part_number;
-=======
 WHERE  n.on_hand>s.on_hand &n.supplier = s.supplier;
->>>>>>> ec45bd1c631acb2c93fd06b4fc7756325d05d020
+
 
 /*4. List all suppliers that supply parts in NYC that aren’t supplied by
 anyone in SFO.*/
