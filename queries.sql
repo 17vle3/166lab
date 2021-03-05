@@ -11,12 +11,10 @@ FROM part_nyc n , part_sfo s
 WHERE  n.color = 0  and s.color= 0;
 =======*/
 
-/*select (select SUM(on_hand)  from part_nyc where color = 0) + (select SUM(on_hand) from part_nyc where color = 0) from part_nyc;*/
+select COALESCE((select SUM(on_hand)  from part_nyc where color = 0),0) + COALESCE((select SUM(on_hand) from part_nyc where color = 0),0) ;
 
 
-select SUM(SumOnHand) from (
 
-SumOnHand ((select SUM(on_hand)  from part_nyc where color = 0) + (select SUM(on_hand) from part_nyc where color = 0))  ;
 
 /*3. List all the suppliers that have more total on hand parts in NYC than
 they do in SFO.*/
