@@ -11,7 +11,7 @@ FROM part_nyc n , part_sfo s
 WHERE  n.color = 0  and s.color= 0;
 =======*/
 
-select (select count(*) from part_nyc where color = 'Red') + (select count(*) from part_nyc where color = 'Red') from dual;
+select (select count(*) from part_nyc where color = 'Red') + (select count(*) from part_nyc where color = 'Red') from part_nyc;
 
 
 /*3. List all the suppliers that have more total on hand parts in NYC than
