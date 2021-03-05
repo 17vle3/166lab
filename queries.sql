@@ -21,17 +21,17 @@ select (sum(p.on_hand)-sum(s.on_hand))+sum(s.on_hand) SumOnHand FROM part_nyc p 
 /*3. List all the suppliers that have more total on hand parts in NYC than
 they do in SFO.*/
 
-SELECT  n.supplier 
+/*SELECT  n.supplier 
 FROM part_nyc n , part_sfo s
-WHERE  n.on_hand>s.on_hand and n.supplier = s.supplier;
+WHERE  n.on_hand>s.on_hand and n.supplier = s.supplier;*/
 
 
 /*4. List all suppliers that supply parts in NYC that aren’t supplied by
 anyone in SFO.*/
 
-SELECT  n.supplier 
+/*SELECT  n.supplier 
 FROM part_nyc n , part_sfo s
-WHERE  NOT EXISTS(n.part_number= s.part_number);
+WHERE  NOT EXISTS(n.part_number= s.part_number);*/
 
 /*5. Update all of the NYC on hand values to on hand - 10.*/
 
