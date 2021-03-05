@@ -36,7 +36,8 @@ WHERE  NOT EXISTS(n.part_number= s.part_number);*/
 /*5. Update all of the NYC on hand values to on hand - 10.*/
 
 UPDATE part_nyc 
-SET on_hand = 10;
+SET on_hand = on_hand-10
+WHERE on_hand>=10;
 
 /*6. Delete all parts from NYC which have less than 30 parts on hand.*/
 DELETE FROM part_nyc  WHERE on_hand<30;
