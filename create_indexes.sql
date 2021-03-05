@@ -1,17 +1,26 @@
 /*1.Count how many parts in NYC have more than 70 parts on hand*/
-CREATE INDEX numOne
-ON part_nyc(on_hand)
-WHERE on_hand>70;
+CREATE INDEX numOne ON part_nyc(on_hand) WHERE on_hand>70;
+
+
+begin
+    dbms_stats.gather_table_stats(user, 'part_nyc');
+end;
 
 /*2. Count how many total parts on hand, in both NYC and SFO, are Red 0 = red 1 = green*/
 
 CREATE INDEX numTwo
 ON part_nyc(on_hand)
-WHERE on_hand>70;
+WHERE color = 'Red';
 
-SELECT  SUM(n.on_hand+s.on_hand) 
-FROM part_nyc n , part_sfo s
-WHERE  n.color = 'Red' and s.color = 'Red';
+CREATE INDEX numTwo
+ON part_sfo(on_hand)
+WHERE color = 'Red';
+
+begin
+    dbms_stats.gather_table_stats(user, 'part_nyc');
+    dbms_stats.gather_table_stats(user, 'part_sfo');
+end;
+
 
 /*3. List all the suppliers that have more total on hand parts in NYC than
 they do in SFO.*/
