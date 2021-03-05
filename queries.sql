@@ -15,11 +15,6 @@ select COALESCE((select SUM(on_hand)  from part_nyc where color = 0),0) + COALES
 
 
 
-<<<<<<< HEAD
- ((select SUM(on_hand)  from part_nyc where color = 0) + (select SUM(on_hand) from part_nyc where color = 0)) SumOnHand ;
-=======
->>>>>>> 384326a59e2119a426bd6277e39a98630abd8abb
-
 /*3. List all the suppliers that have more total on hand parts in NYC than
 they do in SFO.*/
 
