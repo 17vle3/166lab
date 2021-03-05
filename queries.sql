@@ -16,7 +16,7 @@ select COALESCE((select SUM(on_hand)  from part_nyc where color = 0),0) + COALES
 /*3. List all the suppliers that have more total on hand parts in NYC than
 they do in SFO.*/
 
-SELECT  UNIQUE n.supplier 
+SELECT  DISTINCT n.supplier 
 FROM part_nyc n , part_sfo s
 WHERE  n.on_hand>s.on_hand and n.supplier = s.supplier;
 
