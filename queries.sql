@@ -11,7 +11,12 @@ FROM part_nyc n , part_sfo s
 WHERE  n.color = 0  and s.color= 0;
 =======*/
 
-select (select SUM(on_hand)  from part_nyc where color = 0) + (select SUM(on_hand) from part_nyc where color = 0) from part_nyc;
+/*select (select SUM(on_hand)  from part_nyc where color = 0) + (select SUM(on_hand) from part_nyc where color = 0) from part_nyc;*/
+
+
+select SUM(SumOnHand) from (
+
+select (sum(p.on_hand)-sum(s.on_hand))+sum(s.on_hand) SumOnHand FROM part_nyc p LEFT JOIN part_sfo s ON p.part_number=s.part_number group by p.part_number having p.color='Red') As Subtable
 
 /*3. List all the suppliers that have more total on hand parts in NYC than
 they do in SFO.*/
