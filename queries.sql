@@ -5,14 +5,14 @@ FROM part_nyc p
 WHERE p.on_hand>70;
 /*2. Count how many total parts on hand, in both NYC and SFO, are Red 0 = red 1 = green*/
 
-<<<<<<< HEAD
+/*<<<<<<< HEAD
 SELECT  SUM(n.on_hand) 
 FROM part_nyc n , part_sfo s
 WHERE  n.color = 0  and s.color= 0;
-=======
+=======*/
 
 select (select count(*) from part_nyc where color .= 'Red') + (select count(*) from part_nyc where color .= 'Red') from dual;
->>>>>>> ec45bd1c631acb2c93fd06b4fc7756325d05d020
+/*>>>>>>> ec45bd1c631acb2c93fd06b4fc7756325d05d020
 
 /*3. List all the suppliers that have more total on hand parts in NYC than
 they do in SFO.*/
