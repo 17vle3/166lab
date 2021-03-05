@@ -24,9 +24,9 @@ WHERE  (select SUM(n1.on_hand)  from part_nyc n1 where n1.supplier = n.supplier)
 /*4. List all suppliers that supply parts in NYC that aren’t supplied by
 anyone in SFO.*/
 
-/*SELECT  n.supplier 
+SELECT  DISTINCT n.supplier 
 FROM part_nyc n , part_sfo s
-WHERE  NOT EXISTS(n.part_number= s.part_number);*/
+WHERE  NOT EXISTS(n.part_number = s.part_number);
 
 /*5. Update all of the NYC on hand values to on hand - 10.*/
 
