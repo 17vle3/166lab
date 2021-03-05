@@ -18,7 +18,7 @@ they do in SFO.*/
 
 SELECT  DISTINCT n.supplier 
 FROM part_nyc n , part_sfo s
-WHERE  n.on_hand>s.on_hand and n.supplier = s.supplier;
+WHERE  (select SUM(n1.on_hand)  from part_nyc n1 where n1.supplier = n.supplier) > (select SUM(s2.on_hand)  from part_sfo s2 where s.supplier = s2.supplier);
 
 
 /*4. List all suppliers that supply parts in NYC that aren’t supplied by
