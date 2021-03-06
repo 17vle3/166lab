@@ -30,7 +30,7 @@ ORDER BY S.supplier_id;
 /*4. List all suppliers that supply parts in NYC that aren’t supplied by
 anyone in SFO.*/
 
-SELECT DISTINCT s.supplier_id, s.supplier_name
+SELECT DISTINCT sup.supplier_id, sup.supplier_name
 FROM supplier sup, part_nyc n
 WHERE sup.supplier_id = n.supplier AND n.part_number IN
 (SELECT NYC1.part_number FROM supplier sup, part_nyc n1 WHERE sup.supplier_id = n1.supplier
