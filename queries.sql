@@ -36,7 +36,7 @@ WHERE sup.supplier_id = n.supplier AND n.part_number IN
 (SELECT n1.part_number FROM supplier sup, part_nyc n1 WHERE sup.supplier_id = n1.supplier
   EXCEPT
   SELECT s.part_number FROM supplier sup, part_sfo s WHERE sup.supplier_id = s.supplier)
-ORDER BY S.supplier_id;
+ORDER BY sup.supplier_id;
 
 
 /*5. Update all of the NYC on hand values to on hand - 10.*/
