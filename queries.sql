@@ -33,7 +33,7 @@ anyone in SFO.*/
 SELECT DISTINCT sup.supplier_id, sup.supplier_name
 FROM supplier sup, part_nyc n
 WHERE sup.supplier_id = n.supplier AND n.part_number IN
-(SELECT NYC1.part_number FROM supplier sup, part_nyc n1 WHERE sup.supplier_id = n1.supplier
+(SELECT n1.part_number FROM supplier sup, part_nyc n1 WHERE sup.supplier_id = n1.supplier
   EXCEPT
   SELECT s.part_number FROM supplier sup, part_sfo s WHERE sup.supplier_id = s.supplier)
 ORDER BY S.supplier_id;
