@@ -13,3 +13,6 @@ CREATE INDEX sfoOnHand ON part_sfo (on_hand);
 
 CREATE INDEX supID ON supplier (supplier_id);
 CREATE INDEX supName ON supplier (supplier_name);
+
+CREATE INDEX colorID ON color (color_id);
+CREATE INDEX colorName ON color (color_name);
