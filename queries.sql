@@ -11,7 +11,7 @@ FROM part_nyc n , part_sfo s
 WHERE  n.color = 0  and s.color= 0;
 =======*/
 
-select COALESCE((select SUM(n.on_hand)  from part_nyc n, color c where N.color = C.color_id AND color_name = 'Red'),0) + COALESCE((select SUM(s.on_hand) from part_sfo s,color cwhere N.color = C.color_id AND color_name = 'Red'),0) AS numTwo ;
+select COALESCE((select SUM(n.on_hand)  from part_nyc n, color c where n.color = C.color_id AND color_name = 'Red'),0) + COALESCE((select SUM(s.on_hand) from part_sfo s,color c where s.color = C.color_id AND color_name = 'Red'),0) AS numTwo ;
 
 /*3. List all the suppliers that have more total on hand parts in NYC than
 they do in SFO.*/
